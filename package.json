@@ -7,5 +7,8 @@
     "build": "cat index.js > index.dist.js && echo '/* ' >> index.dist.js && date >> index.dist.js && echo ' */' >> index.dist.js && cat index.dist.js"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^28.1.1"
+  }
 }
