@@ -12,5 +12,13 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-    - run: |
-        echo The PR was merged
+    - name: Checkout repository
+      uses: actions/checkout@master
+    # required - sets up auth in the node env
+    - name: Set up Node.js
+      uses: actions/setup-node@v3.3.0
+      with:
+        node-version: 16.x
+    - run: npm ci
+    - run: npm test
+    - run: npm version minor
