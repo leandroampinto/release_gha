@@ -2,10 +2,11 @@
 
 name:  Upload tag
 
-on:  
-  push:
-    tags:
-      - 'v*'
+on:
+  workflow_run:
+    workflows: [Create Version]
+    types:
+      - completed
 
 jobs:
   upload:
