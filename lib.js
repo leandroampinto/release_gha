@@ -1,1 +1,1 @@
-module.exports = () => console.log("0000000000000000000");
+module.exports = () => console.log("0");
