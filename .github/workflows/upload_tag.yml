@@ -1,15 +1,15 @@
 # This is a basic workflow to help you get started with Actions
 
-name:  Upload tag
+name:  Upload Tag
 
 on:
   workflow_run:
-    workflows: ["Create Version"]
+    workflows: ["Create Tag"]
     types:
       - completed
 
 jobs:
-  upload:
+  upload_tag:
     runs-on: ubuntu-latest
     steps:
     - run: env
