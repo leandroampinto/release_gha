@@ -1,6 +1,4 @@
-# This is a basic workflow to help you get started with Actions
-
-name: Create Version
+name: Create Tag
 
 on:
   pull_request:
@@ -11,6 +9,8 @@ jobs:
   create_version:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.npm_version.outputs.test }}
     steps:
     - name: Checkout repository
       uses: actions/checkout@master
@@ -24,7 +24,8 @@ jobs:
     - run: npm run build
     - run: git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
     - run: git config --local user.name "github-actions[bot]"
-    - run: npm version minor
+    - id: npm_version
+      run: npm version minor
     - run: git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}
     - run: git push
     - run: git push --tag
