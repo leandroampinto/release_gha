@@ -8,7 +8,7 @@ on:
       - closed
 
 jobs:
-  if_merged:
+  create_version:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
@@ -28,7 +28,3 @@ jobs:
     - run: git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}
     - run: git push
     - run: git push --tag
-    - uses: actions/upload-artifact@v3
-      with:
-        name: release_gha
-        path: dist/**
