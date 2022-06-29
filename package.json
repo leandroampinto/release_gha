@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "mkdir --parent dist && cat index.js > dist/index.js && echo '/* ' >> dist/index.js && date >> dist/index.js && echo ' */' >> dist/index.js && cat dist/index.js && cp lib.js dist"
+    "build": "mkdir --parent dist && cat index.js > dist/index.js && echo '/* ' >> dist/index.js && date >> dist/index.js && echo ' */' >> dist/index.js && cat dist/index.js && cp lib.js dist && zip -r dist dist"
   },
   "author": "",
   "license": "ISC",
