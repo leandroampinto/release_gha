@@ -21,4 +21,6 @@ jobs:
         node-version: 16.x
     - run: npm ci
     - run: npm run build
+    - run: git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+    - run: git config --local user.name "github-actions[bot]"
     - run: npm version minor
