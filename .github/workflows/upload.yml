@@ -4,7 +4,7 @@ name:  Upload tag
 
 on:
   workflow_run:
-    workflows: [Create Version]
+    workflows: ["Create Version"]
     types:
       - completed
 
