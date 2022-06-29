@@ -6,15 +6,12 @@ on:
       - closed
 
 jobs:
-  create_version:
+  create_tag:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
-    outputs:
-      output1: ${{ steps.npm_version.outputs.test }}
     steps:
     - name: Checkout repository
       uses: actions/checkout@master
-    # required - sets up auth in the node env
     - name: Set up Node.js
       uses: actions/setup-node@v3.3.0
       with:
