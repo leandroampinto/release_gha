@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: env
+    - run: cat ${{ env.GITHUB_EVENT_PATH }}
     # - name: Checkout repository
     #   uses: actions/checkout@master
     # - name: Set up Node.js
