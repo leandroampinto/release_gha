@@ -5,7 +5,7 @@ name:  Upload tag
 on:  
   push:
     tags:
-      - '*'
+      - 'v*'
 
 jobs:
   upload:
