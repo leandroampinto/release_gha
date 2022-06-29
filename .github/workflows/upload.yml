@@ -1,11 +1,12 @@
 # This is a basic workflow to help you get started with Actions
 
-name:  Upload tag
+name:  Upload Version
 
-on:  
-  push:
-    tags:
-      - 'v*'
+on:
+  workflow_run:
+    workflows: [Create Version]
+    types:
+      - completed
 
 jobs:
   upload:
