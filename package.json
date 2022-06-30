@@ -3,9 +3,19 @@
   "version": "4.7.0",
   "description": "",
   "main": "index.js",
+  "config": {
+    "aws": {
+      "region": "us-east-1",
+      "s3": {
+        "bucket": "membership-preferences-ui-deploy"
+      }
+    },
+    "output": "dist"
+  },
   "scripts": {
-    "build": "mkdir --parent dist && cat index.js > dist/index.js && echo '/* ' >> dist/index.js && date >> dist/index.js && echo ' */' >> dist/index.js && cat dist/index.js && cp lib.js dist",
-    "s3-deploy": "s3-deploy './dist/**' --cwd './dist/' --filePrefix ${npm_package_name}-${npm_package_version} --region 'us-east-1' --bucket 'membership-preferences-ui-deploy'"
+    "build": "mkdir --parent ${npm_package_config_output} && cp *.js ${npm_package_config_output}",
+    "s3-deploy": "s3-deploy '${npm_package_config_output}/**' --cwd '${npm_package_config_output}' --filePrefix ${npm_package_name}-${npm_package_version} --region ${npm_package_config_aws_region} --bucket ${npm_package_config_aws_s3_bucket}",
+    "echo": "echo ${npm_package_config_aws_region} ${npm_package_config_aws_s3_bucket}"
   },
   "author": "",
   "license": "ISC",
