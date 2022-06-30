@@ -4,11 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "mkdir --parent dist && cat index.js > dist/index.js && echo '/* ' >> dist/index.js && date >> dist/index.js && echo ' */' >> dist/index.js && cat dist/index.js && cp lib.js dist && zip -r dist dist"
+    "build": "mkdir --parent dist && cat index.js > dist/index.js && echo '/* ' >> dist/index.js && date >> dist/index.js && echo ' */' >> dist/index.js && cat dist/index.js && cp lib.js dist",
+    "s3-deploy": "s3-deploy './dist/**' --cwd './dist/' --filePrefix $npm_package_version --region 'us-east-1' --bucket 'membership-preferences-ui-deploy'"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "jest": "^28.1.1"
+  },
+  "devDependencies": {
+    "s3-deploy": "^1.4.0"
   }
 }

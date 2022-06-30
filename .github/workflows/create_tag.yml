@@ -5,6 +5,10 @@ on:
     types:
       - closed
 
+env:
+  - AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  - AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
 jobs:
   create_tag:
     if: github.event.pull_request.merged == true
@@ -26,10 +30,4 @@ jobs:
     - run: git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}
     - run: git push
     - run: git push --tag
-    - uses: hkusu/s3-upload-action@v2
-      with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        aws-region: 'us-east-1'
-        aws-bucket: 'membership-preferences-ui-deploy'
-        file-path: './dist.zip'
+    - run: npm run s3-deplo
