@@ -7,8 +7,6 @@ on:
     types:
       - closed
 
-
-
 jobs:
   create_tag:
     if: github.event.pull_request.merged == true
