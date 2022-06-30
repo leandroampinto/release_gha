@@ -10,6 +10,8 @@ on:
 env:
   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  GITHUB_USER_EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
+  GITHUB_USER_NAME: github-actions[bot]
 
 jobs:
   create_tag:
@@ -26,10 +28,9 @@ jobs:
     - run: cat ${GITHUB_EVENT_PATH}
     - run: npm ci
     - run: npm run build
-    - run: git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-    - run: git config --local user.name "github-actions[bot]"
-    - id: npm_version
-      run: npm version minor
+    - run: git config --local user.email ${{ env.GITHUB_USER_EMAIL }}
+    - run: git config --local user.name ${{ env.GITHUB_USER_NAME }}
+    - run: npm version minor
     - run: git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}
     - run: git push
     - run: git push --tag
